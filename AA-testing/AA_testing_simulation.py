@@ -147,7 +147,7 @@ def _(balance_chart, broken_data):
 @app.cell(hide_code=True)
 def _(mo):
     mo.md(r"""
-    As a result, we notice that the average monthly customer spend for button 1 is significantly higher than button 2. This doesn't make sense though, because button 1 and 2 are both the same red button!
+    As a result, we notice that the average monthly customer spend for button 1 is significantly higher than button 2 when we run a t-test. This doesn't make sense though, because button 1 and 2 are both the same red button!
     """)
     return
 
@@ -155,6 +155,8 @@ def _(mo):
 @app.cell
 def _(broken_data, smf):
     # run broken a/a test
+
+    # Note: this simple linear regression is equivalent to running a t-test
     model = smf.ols('spend~has_button_1', data = broken_data).fit()
     res = model.summary()
     print(res)

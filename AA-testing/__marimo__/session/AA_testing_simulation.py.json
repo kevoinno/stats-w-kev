@@ -98,12 +98,12 @@
     },
     {
       "id": "ggsq",
-      "code_hash": "ff96aefb49fdf7f8c67cd885a8bfaf69",
+      "code_hash": "e5a649972acd60554570e57d3fbeeba3",
       "outputs": [
         {
           "type": "data",
           "data": {
-            "text/markdown": "<span class=\"markdown prose dark:prose-invert contents\"><span class=\"paragraph\">As a result, we notice that the average monthly customer spend for button 1 is significantly higher than button 2. This doesn't make sense though, because button 1 and 2 are both the same red button!</span></span>"
+            "text/markdown": "<span class=\"markdown prose dark:prose-invert contents\"><span class=\"paragraph\">As a result, we notice that the average monthly customer spend for button 1 is significantly higher than button 2 when we run a t-test. This doesn't make sense though, because button 1 and 2 are both the same red button!</span></span>"
           }
         }
       ],
@@ -111,7 +111,7 @@
     },
     {
       "id": "Xref",
-      "code_hash": "f3433e3595ebd8913ef42d29bbaa21be",
+      "code_hash": "589c43f4d8ab2c4c5c02e90aad41f076",
       "outputs": [
         {
           "type": "data",
@@ -124,7 +124,7 @@
         {
           "type": "stream",
           "name": "stdout",
-          "text": "                            OLS Regression Results                            \n==============================================================================\nDep. Variable:                  spend   R-squared:                       0.033\nModel:                            OLS   Adj. R-squared:                  0.033\nMethod:                 Least Squares   F-statistic:                     1724.\nDate:                Thu, 02 Apr 2026   Prob (F-statistic):               0.00\nTime:                        16:31:25   Log-Likelihood:            -1.4612e+05\nNo. Observations:               50000   AIC:                         2.922e+05\nDf Residuals:                   49998   BIC:                         2.923e+05\nDf Model:                           1                                         \nCovariance Type:            nonrobust                                         \n================================================================================\n                   coef    std err          t      P>|t|      [0.025      0.975]\n--------------------------------------------------------------------------------\nIntercept       21.2151      0.030    698.947      0.000      21.156      21.275\nhas_button_1     1.6826      0.041     41.518      0.000       1.603       1.762\n==============================================================================\nOmnibus:                    33192.789   Durbin-Watson:                   2.007\nProb(Omnibus):                  0.000   Jarque-Bera (JB):             8525.944\nSkew:                           0.833   Prob(JB):                         0.00\nKurtosis:                       1.852   Cond. No.                         2.79\n==============================================================================\n\nNotes:\n[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.\n",
+          "text": "                            OLS Regression Results                            \n==============================================================================\nDep. Variable:                  spend   R-squared:                       0.033\nModel:                            OLS   Adj. R-squared:                  0.033\nMethod:                 Least Squares   F-statistic:                     1724.\nDate:                Thu, 02 Apr 2026   Prob (F-statistic):               0.00\nTime:                        16:50:39   Log-Likelihood:            -1.4612e+05\nNo. Observations:               50000   AIC:                         2.922e+05\nDf Residuals:                   49998   BIC:                         2.923e+05\nDf Model:                           1                                         \nCovariance Type:            nonrobust                                         \n================================================================================\n                   coef    std err          t      P>|t|      [0.025      0.975]\n--------------------------------------------------------------------------------\nIntercept       21.2151      0.030    698.947      0.000      21.156      21.275\nhas_button_1     1.6826      0.041     41.518      0.000       1.603       1.762\n==============================================================================\nOmnibus:                    33192.789   Durbin-Watson:                   2.007\nProb(Omnibus):                  0.000   Jarque-Bera (JB):             8525.944\nSkew:                           0.833   Prob(JB):                         0.00\nKurtosis:                       1.852   Cond. No.                         2.79\n==============================================================================\n\nNotes:\n[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.\n",
           "mimetype": "text/plain"
         }
       ]
