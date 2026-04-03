@@ -4,7 +4,7 @@ __generated_with = "0.22.0"
 app = marimo.App(width="medium")
 
 
-@app.cell
+@app.cell(hide_code=True)
 def _():
     import marimo as mo
     import pandas as pd
@@ -15,13 +15,13 @@ def _():
     return mo, np, pd, plt, smf
 
 
-@app.cell
+@app.cell(hide_code=True)
 def _(np):
     np.random.seed(67) # setting seed for reproducibility
     return
 
 
-@app.cell
+@app.cell(hide_code=True)
 def _(np, pd, plt):
     def simulate_data(n = 50000, # number of customers in the A/A test
                       avg_spend = 20, # average spend for a normal customer
@@ -97,11 +97,11 @@ def _(np, pd, plt):
 @app.cell(hide_code=True)
 def _(mo):
     mo.md(r"""
-    ## The Data
+    ## The Data and the context of the A/A test
 
     We are simulating the results of an A/A test.
 
-    Imagine we are testing whether changing "Order Online" button from red to yellow will increase average monthly customer spend. Before we run an A/B test, we want to check whether our results will be trustworthy using an A/A test.
+    The owner of the restaurant "Let's Taco 'bout it" are considering changing "Order Online" button from red to yellow will increase average monthly customer spend. Before we run an A/B test, we want to check whether our results will be trustworthy using an A/A test.
 
     Our simulated dataset will have the following columns:
 
@@ -113,16 +113,17 @@ def _(mo):
     |has_button_1| group that the customer is assigned to. 0 = red button #2, 1 = red button #1|
 
     Think of `has_button_1` as a variable that specifies whether the user is in the treated or control group. In an A/A test, these groups are shown the same button.
+
+    Preview of the data:
     """)
     return
 
 
-@app.cell
+@app.cell(hide_code=True)
 def _(simulate_data):
     broken_data = simulate_data(broken = True) # broken A/A test
     normal_data = simulate_data(broken = False) # A/A test
-    print(f"Preview of the data:")
-    print(broken_data.head())
+    broken_data.head()
     return broken_data, normal_data
 
 
@@ -153,17 +154,17 @@ def _(mo):
 
 
 @app.cell
-def _(broken_data, smf):
+def _(broken_data, mo, smf):
     # run broken a/a test
 
     # Note: this simple linear regression is equivalent to running a t-test
     model = smf.ols('spend~has_button_1', data = broken_data).fit()
     res = model.summary()
-    print(res)
+    mo.Html(res.as_html())
     return (model,)
 
 
-@app.cell
+@app.cell(hide_code=True)
 def _(model, plot_ci):
     plot_ci(model)
     return
@@ -181,7 +182,7 @@ def _(mo):
     return
 
 
-@app.cell
+@app.cell(hide_code=True)
 def _(balance_chart, normal_data):
     balance_chart(normal_data)
     return
@@ -198,11 +199,11 @@ def _(mo):
 
 
 @app.cell
-def _(normal_data, smf):
+def _(mo, normal_data, smf):
     # run a/a test with correct results
     normal_model = smf.ols('spend~has_button_1', data = normal_data).fit()
     normal_res = normal_model.summary()
-    print(normal_res)
+    mo.Html(normal_res.as_html())
     return (normal_model,)
 
 
