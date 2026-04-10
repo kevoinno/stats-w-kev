@@ -15,5 +15,6 @@ ul { list-style: none; padding: 0; }
 li { padding: 0.4rem 0; }
 a { color: #000; text-decoration: none; }
 a:hover { color: #555; }
+main a { text-decoration: underline; }
 .desc { color: #555; font-size: 0.9rem; }
 footer { margin-top: 3rem; color: #888; font-size: 0.85rem; }
