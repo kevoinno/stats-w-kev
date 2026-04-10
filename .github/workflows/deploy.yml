@@ -1,0 +1,53 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.13
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v4
+
+      - name: Install dependencies
+        run: uv sync
+
+      - name: Export notebooks to WASM HTML
+        run: |
+          mkdir -p _site
+          for notebook in notebooks/**/*.py; do
+            topic=$(basename $(dirname "$notebook"))
+            slug=$(basename "$notebook" .py | tr '_' '-')
+            out_dir="_site/${topic}/${slug}"
+            mkdir -p "$out_dir"
+            echo "Exporting: $notebook → $out_dir"
+            uv run marimo export html-wasm "$notebook" --mode run --no-show-code -o "$out_dir"
+          done
+
+      - name: Copy landing page assets
+        run: |
+          cp site/index.html _site/index.html
+          cp site/style.css _site/style.css
+
+      - name: Deploy to gh-pages branch
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./_site
+          publish_branch: gh-pages
+          force_orphan: true
