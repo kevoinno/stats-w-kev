@@ -213,5 +213,88 @@ def _(normal_model, plot_ci):
     return
 
 
+@app.cell(hide_code=True)
+def _(mo):
+    mo.md(r"""
+    ## Advanced: Re-randomization Test
+
+    A single A/A test only gives us one p-value. We can't tell much from that alone. A better approach, recommended in *Trustworthy Online Controlled Experiments*, is to run separate A/A tests on the same dataset many times.
+
+    We keep the customers and their spend values fixed, but re-assign each customer to button 1 or button 2 1000 times using the assignment mechanism under test. If the assignment is working correctly, the p-values should be roughly **uniform** across [0, 1] — about 5% should fall below 0.05 just by chance. If the assignment is broken, p-values will be **skewed toward 0**, revealing that the mechanism itself is producing spurious effects.
+
+    The code takes some time to run so please be patient!
+    """)
+    return
+
+
+@app.cell(hide_code=True)
+def _(np, plt, smf):
+    def simulate_pvalues(df, n_simulations=1000, broken=False):
+        pvalues = []
+        for _ in range(n_simulations):
+            df_copy = df.copy()
+            n = len(df_copy)
+            if broken:
+                probs = np.where(df_copy['is_big_back'], 0.7, 0.5)
+            else:
+                probs = np.repeat(0.5, n)
+            df_copy['has_button_1'] = np.random.binomial(1, p=probs)
+            model = smf.ols('spend~has_button_1', data=df_copy).fit()
+            pvalues.append(model.pvalues['has_button_1'])
+        return pvalues
+
+    def plot_pvalue_distribution(pvalues, title):
+        fig, ax = plt.subplots()
+        ax.hist(pvalues, bins=50, edgecolor='black')
+        ax.axvline(x=0.05, linestyle='--', color='red', label='α = 0.05')
+        ax.set_xlabel('P-value')
+        ax.set_ylabel('Frequency')
+        ax.set_title(title)
+        ax.legend()
+        return fig
+
+    return plot_pvalue_distribution, simulate_pvalues
+
+
+@app.cell(hide_code=True)
+def _(mo):
+    mo.md(r"""
+    ### Distribution of p-values for broken A/B testing pipline
+    """)
+    return
+
+
+@app.cell
+def _(broken_data, simulate_pvalues):
+    broken_pvalues = simulate_pvalues(broken_data, n_simulations=1000, broken=True)
+    return (broken_pvalues,)
+
+
+@app.cell
+def _(broken_pvalues, plot_pvalue_distribution):
+    plot_pvalue_distribution(broken_pvalues, title='P-value Distribution: Broken Assignment (1000 re-randomizations)')
+    return
+
+
+@app.cell(hide_code=True)
+def _(mo):
+    mo.md(r"""
+    ### Distribution of p-values for working A/B testing pipline
+    """)
+    return
+
+
+@app.cell
+def _(normal_data, simulate_pvalues):
+    normal_pvalues = simulate_pvalues(normal_data, n_simulations=1000, broken=False)
+    return (normal_pvalues,)
+
+
+@app.cell
+def _(normal_pvalues, plot_pvalue_distribution):
+    plot_pvalue_distribution(normal_pvalues, title='P-value Distribution: Working Assignment (1000 re-randomizations)')
+    return
+
+
 if __name__ == "__main__":
     app.run()
