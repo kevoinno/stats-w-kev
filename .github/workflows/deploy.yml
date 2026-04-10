@@ -43,6 +43,7 @@ jobs:
         run: |
           cp site/index.html _site/index.html
           cp site/style.css _site/style.css
+          cp -r site/assets _site/assets
 
       - name: Deploy to gh-pages branch
         uses: peaceiris/actions-gh-pages@v4
