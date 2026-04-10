@@ -32,7 +32,7 @@ jobs:
           mkdir -p _site
           for notebook in notebooks/**/*.py; do
             topic=$(basename $(dirname "$notebook"))
-            slug=$(basename "$notebook" .py | tr '_' '-')
+            slug=$(basename "$notebook" .py | tr '_' '-' | tr '[:upper:]' '[:lower:]')
             out_dir="_site/${topic}/${slug}"
             mkdir -p "$out_dir"
             echo "Exporting: $notebook → $out_dir"
