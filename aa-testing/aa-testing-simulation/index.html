@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="./favicon.ico" />
+    <!-- Preload is necessary because we show these images when we disconnect from the server,
+    but at that point we cannot load these images from the server -->
+    <link rel="preload" href="./assets/gradient-yHQUC_QB.png" as="image" />
+    <link rel="preload" href="./assets/noise-60BoTA8O.png" as="image" />
+    <!-- Preload the fonts -->
+    <link rel="preload" href="./assets/Lora-VariableFont_wght-CZceb_kH.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
+    <link rel="preload" href="./assets/PTSans-Regular-Bam3NpBI.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
+    <link rel="preload" href="./assets/PTSans-Bold-C_DwAp7Z.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
+    <link rel="preload" href="./assets/FiraMono-Regular-CEsLFVD9.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
+    <link rel="preload" href="./assets/FiraMono-Medium-D5MAsWEG.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
+    <link rel="preload" href="./assets/FiraMono-Bold-C6PDArdf.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta name="description" content="a marimo app" />
+    <link rel="apple-touch-icon" href="./apple-touch-icon.png" />
+    <link rel="manifest" href="./manifest.json" />
+
+    <script data-marimo="true">
+      function __resizeIframe(obj) {
+        const scrollbarHeight = 20; // Max between windows, mac, and linux
+
+        function setHeight() {
+          // Guard against race condition where iframe isn't ready
+          if (!obj.contentWindow?.document?.documentElement) {
+            return;
+          }
+          const element = obj.contentWindow.document.documentElement;
+          // If there is no vertical scrollbar, we don't need to resize the iframe
+          if (element.scrollHeight === element.clientHeight) {
+            return;
+          }
+
+          // Create a new height that includes the scrollbar height if it's visible
+          const hasHorizontalScrollbar = element.scrollWidth > element.clientWidth;
+          const newHeight = element.scrollHeight + (hasHorizontalScrollbar ? scrollbarHeight : 0);
+
+          // Only update the height if it's different from the current height
+          if (obj.style.height !== `${newHeight}px`) {
+            obj.style.height = `${newHeight}px`;
+          }
+        }
+
+        // Resize the iframe to the height of the content and bottom scrollbar height
+        setHeight();
+
+        // Resize the iframe when the content changes
+        const resizeObserver = new ResizeObserver((_entries) => {
+          setHeight();
+        });
+        // Only observe if iframe content is ready
+        if (obj.contentWindow?.document?.body) {
+          resizeObserver.observe(obj.contentWindow.document.body);
+        }
+      }
+    </script>
+    <marimo-filename hidden>notebook.py</marimo-filename>
+    <!-- TODO(Trevor): Legacy, required by VS Code plugin. Remove when plugin is updated (see marimo/server/_templates/template.py) -->
+    <marimo-version data-version="{{ version }}" hidden></marimo-version>
+    <marimo-user-config data-config="{{ user_config }}" hidden></marimo-user-config>
+    <marimo-server-token data-token="{{ server_token }}" hidden></marimo-server-token>
+    <!-- /TODO -->
+    <title>AA testing simulation</title>
+    <script type="module" crossorigin src="./assets/index-DgkDB3V6.js"></script>
+    <link rel="modulepreload" crossorigin href="./assets/preload-helper-BOTGA194.js">
+    <link rel="modulepreload" crossorigin href="./assets/chunk-LvLJmgfZ.js">
+    <link rel="modulepreload" crossorigin href="./assets/react-Bj1aDYRI.js">
+    <link rel="modulepreload" crossorigin href="./assets/compiler-runtime-B3qBwwSJ.js">
+    <link rel="modulepreload" crossorigin href="./assets/useEventListener-JHUvHLW9.js">
+    <link rel="modulepreload" crossorigin href="./assets/defaultLocale-B9UM4_6J.js">
+    <link rel="modulepreload" crossorigin href="./assets/precisionRound-DE6m4R32.js">
+    <link rel="modulepreload" crossorigin href="./assets/defaultLocale-BiVEjgZ4.js">
+    <link rel="modulepreload" crossorigin href="./assets/vega-loader.browser-BT4x4sta.js">
+    <link rel="modulepreload" crossorigin href="./assets/utils-BhbMk_bI.js">
+    <link rel="modulepreload" crossorigin href="./assets/clsx-Dz_KRrWq.js">
+    <link rel="modulepreload" crossorigin href="./assets/cn-DCUzRj2J.js">
+    <link rel="modulepreload" crossorigin href="./assets/jsx-runtime-cbTw3Dw7.js">
+    <link rel="modulepreload" crossorigin href="./assets/badge-UzeYbQPQ.js">
+    <link rel="modulepreload" crossorigin href="./assets/button-X_aYMcE3.js">
+    <link rel="modulepreload" crossorigin href="./assets/react-dom-CSu739Rf.js">
+    <link rel="modulepreload" crossorigin href="./assets/Combination-BPAy8uP5.js">
+    <link rel="modulepreload" crossorigin href="./assets/menu-items-C3r5-sGJ.js">
+    <link rel="modulepreload" crossorigin href="./assets/dist-CWIn7DNb.js">
+    <link rel="modulepreload" crossorigin href="./assets/createLucideIcon-BbhvgPRh.js">
+    <link rel="modulepreload" crossorigin href="./assets/check-BX3rTFK1.js">
+    <link rel="modulepreload" crossorigin href="./assets/x-CVK_q-zj.js">
+    <link rel="modulepreload" crossorigin href="./assets/select-qSsIcOgJ.js">
+    <link rel="modulepreload" crossorigin href="./assets/tooltip-BjX8HFPm.js">
+    <link rel="modulepreload" crossorigin href="./assets/use-toast-C4Rr8s81.js">
+    <link rel="modulepreload" crossorigin href="./assets/useEvent-D91BmmQi.js">
+    <link rel="modulepreload" crossorigin href="./assets/invariant-B-l9jeBW.js">
+    <link rel="modulepreload" crossorigin href="./assets/isObject-DvLSfCY5.js">
+    <link rel="modulepreload" crossorigin href="./assets/isArrayLikeObject-ODovYgPQ.js">
+    <link rel="modulepreload" crossorigin href="./assets/merge-KEVTaUSH.js">
+    <link rel="modulepreload" crossorigin href="./assets/zod-H_cgTO0M.js">
+    <link rel="modulepreload" crossorigin href="./assets/utils-BNdvLYaG.js">
+    <link rel="modulepreload" crossorigin href="./assets/Deferred-BYoNwz_x.js">
+    <link rel="modulepreload" crossorigin href="./assets/uuid-oCq7lYru.js">
+    <link rel="modulepreload" crossorigin href="./assets/DeferredRequestRegistry-DRtq5P9f.js">
+    <link rel="modulepreload" crossorigin href="./assets/constants-CNVyfOzm.js">
+    <link rel="modulepreload" crossorigin href="./assets/session-C22Hiywl.js">
+    <link rel="modulepreload" crossorigin href="./assets/config-CdI1sY6r.js">
+    <link rel="modulepreload" crossorigin href="./assets/requests-BmJhiUGv.js">
+    <link rel="modulepreload" crossorigin href="./assets/useLifecycle-Dhu3vUuX.js">
+    <link rel="modulepreload" crossorigin href="./assets/useNonce-Cz5z0CTp.js">
+    <link rel="modulepreload" crossorigin href="./assets/useTheme-BZ-ejQ3b.js">
+    <link rel="modulepreload" crossorigin href="./assets/arrays-DTX1hZCG.js">
+    <link rel="modulepreload" crossorigin href="./assets/strings-BhTkn9U2.js">
+    <link rel="modulepreload" crossorigin href="./assets/once-D5MbwR5j.js">
+    <link rel="modulepreload" crossorigin href="./assets/capabilities-9rPLQ8Ql.js">
+    <link rel="modulepreload" crossorigin href="./assets/createReducer-BYdaa-Mh.js">
+    <link rel="modulepreload" crossorigin href="./assets/paths-DI3oZ0CS.js">
+    <link rel="modulepreload" crossorigin href="./assets/dist-DIy_N_yY.js">
+    <link rel="modulepreload" crossorigin href="./assets/dist-C9nDytuy.js">
+    <link rel="modulepreload" crossorigin href="./assets/dist-CjNqII3E.js">
+    <link rel="modulepreload" crossorigin href="./assets/dist-DKrZn9ai.js">
+    <link rel="modulepreload" crossorigin href="./assets/dist-CIftQN-I.js">
+    <link rel="modulepreload" crossorigin href="./assets/dist-bj1mt1tW.js">
+    <link rel="modulepreload" crossorigin href="./assets/dist-CJ2D26ow.js">
+    <link rel="modulepreload" crossorigin href="./assets/dist-Cj_hQPOR.js">
+    <link rel="modulepreload" crossorigin href="./assets/dist-BfRVXwpF.js">
+    <link rel="modulepreload" crossorigin href="./assets/stex-DhrhgQkE.js">
+    <link rel="modulepreload" crossorigin href="./assets/toDate-BzaZOs5g.js">
+    <link rel="modulepreload" crossorigin href="./assets/purify.es-BTsGkydu.js">
+    <link rel="modulepreload" crossorigin href="./assets/cjs-Boy23usL.js">
+    <link rel="modulepreload" crossorigin href="./assets/isSymbol-BT6B8Bon.js">
+    <link rel="modulepreload" crossorigin href="./assets/toNumber-BvwE1TMv.js">
+    <link rel="modulepreload" crossorigin href="./assets/now-D9EZE70o.js">
+    <link rel="modulepreload" crossorigin href="./assets/debounce-CoGvMBxs.js">
+    <link rel="modulepreload" crossorigin href="./assets/database-zap-Bo3eWysp.js">
+    <link rel="modulepreload" crossorigin href="./assets/main-DMGaTd9L.js">
+    <link rel="modulepreload" crossorigin href="./assets/cells-rqCJr5Ib.js">
+    <link rel="modulepreload" crossorigin href="./assets/ErrorBoundary-zbTlP3Ln.js">
+    <link rel="modulepreload" crossorigin href="./assets/kbd-BCvAMf7r.js">
+    <link rel="modulepreload" crossorigin href="./assets/useInstallPackage-CbfykXzG.js">
+    <link rel="modulepreload" crossorigin href="./assets/alert-dialog-BpHPkrDN.js">
+    <link rel="modulepreload" crossorigin href="./assets/dialog-xcsfhMSJ.js">
+    <link rel="modulepreload" crossorigin href="./assets/useDebounce-BX__oPH9.js">
+    <link rel="modulepreload" crossorigin href="./assets/numbers-PVAIxxm3.js">
+    <link rel="modulepreload" crossorigin href="./assets/SSRProvider-B1w1DixR.js">
+    <link rel="modulepreload" crossorigin href="./assets/context-BTW87m_q.js">
+    <link rel="modulepreload" crossorigin href="./assets/useNumberFormatter-BbVPmfi-.js">
+    <link rel="modulepreload" crossorigin href="./assets/usePress-Cclai8Te.js">
+    <link rel="modulepreload" crossorigin href="./assets/input-DtaVTHTT.js">
+    <link rel="modulepreload" crossorigin href="./assets/ImperativeModal-Dy4BGls6.js">
+    <link rel="modulepreload" crossorigin href="./assets/cell-link-Rcz-LPKa.js">
+    <link rel="modulepreload" crossorigin href="./assets/multi-map-WNcxeeIo.js">
+    <link rel="modulepreload" crossorigin href="./assets/alert-CO43lrmn.js">
+    <link rel="modulepreload" crossorigin href="./assets/chevron-right-CgWZ5EuC.js">
+    <link rel="modulepreload" crossorigin href="./assets/dropdown-menu-BrDKTB7e.js">
+    <link rel="modulepreload" crossorigin href="./assets/links-CBzEeixa.js">
+    <link rel="modulepreload" crossorigin href="./assets/datasource-CNQ-RUAj.js">
+    <link rel="modulepreload" crossorigin href="./assets/state-XUzipEOc.js">
+    <link rel="modulepreload" crossorigin href="./assets/sparkles-BFAuUmQz.js">
+    <link rel="modulepreload" crossorigin href="./assets/MarimoErrorOutput-C3dgyHB-.js">
+    <link rel="modulepreload" crossorigin href="./assets/copy-20suwgAm.js">
+    <link rel="modulepreload" crossorigin href="./assets/copy-D9pqKUvN.js">
+    <link rel="modulepreload" crossorigin href="./assets/copy-icon-CgnxGrMW.js">
+    <link rel="modulepreload" crossorigin href="./assets/spinner-C1rFlsY1.js">
+    <link rel="modulepreload" crossorigin href="./assets/html-to-image-G3c0U-iP.js">
+    <link rel="modulepreload" crossorigin href="./assets/focus-Dujsd1jO.js">
+    <link rel="modulepreload" crossorigin href="./assets/useAsyncData-KVNnqnT9.js">
+    <link rel="modulepreload" crossorigin href="./assets/LazyAnyLanguageCodeMirror-JSMdoajI.js">
+    <link rel="modulepreload" crossorigin href="./assets/micromark-factory-space-8Uk-uN5W.js">
+    <link rel="modulepreload" crossorigin href="./assets/chunk-5FQGJX7Z-BMCEQJ02.js">
+    <link rel="modulepreload" crossorigin href="./assets/markdown-renderer-B3K5q-ZY.js">
+    <link rel="modulepreload" crossorigin href="./assets/dist-DHhE1ppN.js">
+    <link rel="modulepreload" crossorigin href="./assets/command-D6DswM0r.js">
+    <link rel="modulepreload" crossorigin href="./assets/popover-Cv6ejAIc.js">
+    <link rel="modulepreload" crossorigin href="./assets/errors-DOdB-ouX.js">
+    <link rel="modulepreload" crossorigin href="./assets/download-Xq3GOYNm.js">
+    <link rel="modulepreload" crossorigin href="./assets/useRunCells-CM1qW8Of.js">
+    <link rel="modulepreload" crossorigin href="./assets/RenderHTML-BOchBzK-.js">
+    <link rel="modulepreload" crossorigin href="./assets/table-C8UPy_05.js">
+    <link rel="modulepreload" crossorigin href="./assets/useIframeCapabilities-YTPInk6U.js">
+    <link rel="modulepreload" crossorigin href="./assets/error-banner-BiJwbvyR.js">
+    <link rel="modulepreload" crossorigin href="./assets/formats-OGAsvfBK.js">
+    <link rel="modulepreload" crossorigin href="./assets/en-US-DiJ3QFS_.js">
+    <link rel="modulepreload" crossorigin href="./assets/isValid-DSnTKHQH.js">
+    <link rel="modulepreload" crossorigin href="./assets/dates-BJSc8AMo.js">
+    <link rel="modulepreload" crossorigin href="./assets/maps-CCoyzwfU.js">
+    <link rel="modulepreload" crossorigin href="./assets/extends-Cj59wdOU.js">
+    <link rel="modulepreload" crossorigin href="./assets/emotion-is-prop-valid.esm-CyDtkjhK.js">
+    <link rel="modulepreload" crossorigin href="./assets/useDateFormatter-Dk7PA_t2.js">
+    <link rel="modulepreload" crossorigin href="./assets/react-icons.esm-DxslCP1T.js">
+    <link rel="modulepreload" crossorigin href="./assets/table-C-5GLtb7.js">
+    <link rel="modulepreload" crossorigin href="./assets/message-circle-BvHsZAbQ.js">
+    <link rel="modulepreload" crossorigin href="./assets/react-resizable-panels.browser.esm-xQHRvEag.js">
+    <link rel="modulepreload" crossorigin href="./assets/JsonOutput-B3ENPE9s.js">
+    <link rel="modulepreload" crossorigin href="./assets/chart-no-axes-column-Cyaq55br.js">
+    <link rel="modulepreload" crossorigin href="./assets/square-function-DitZjRTT.js">
+    <link rel="modulepreload" crossorigin href="./assets/spec-BzGOTwD5.js">
+    <link rel="modulepreload" crossorigin href="./assets/ellipsis-vertical-Cq6WSGqD.js">
+    <link rel="modulepreload" crossorigin href="./assets/refresh-cw-DeZgarGm.js">
+    <link rel="modulepreload" crossorigin href="./assets/components-BEowaI9j.js">
+    <link rel="modulepreload" crossorigin href="./assets/column-preview-D3iW4pG3.js">
+    <link rel="modulepreload" crossorigin href="./assets/icons-DelodwsZ.js">
+    <link rel="modulepreload" crossorigin href="./assets/floating-outline-CUurMy_Y.js">
+    <link rel="modulepreload" crossorigin href="./assets/useAddCell-CUrHq1Z4.js">
+    <link rel="modulepreload" crossorigin href="./assets/objectWithoutPropertiesLoose-CYAI8Ruy.js">
+    <link rel="modulepreload" crossorigin href="./assets/esm-CmxdJbk6.js">
+    <link rel="modulepreload" crossorigin href="./assets/eye-off-DJFpofTS.js">
+    <link rel="modulepreload" crossorigin href="./assets/plus-DcaJfJ2z.js">
+    <link rel="modulepreload" crossorigin href="./assets/readonly-python-code-CsZeevPe.js">
+    <link rel="modulepreload" crossorigin href="./assets/file-headphone-Bs2HNmhu.js">
+    <link rel="modulepreload" crossorigin href="./assets/file-CLBJ74pj.js">
+    <link rel="modulepreload" crossorigin href="./assets/image-CafsWQx5.js">
+    <link rel="modulepreload" crossorigin href="./assets/file-icons-CGVD9eMg.js">
+    <link rel="modulepreload" crossorigin href="./assets/switch-BaYCltRz.js">
+    <link rel="modulepreload" crossorigin href="./assets/events-Dln0wBiA.js">
+    <link rel="modulepreload" crossorigin href="./assets/globals-BOMeSJG5.js">
+    <link rel="modulepreload" crossorigin href="./assets/share-1Sb4LifJ.js">
+    <link rel="modulepreload" crossorigin href="./assets/blob-DWwaSoxb.js">
+    <link rel="modulepreload" crossorigin href="./assets/memoize-BAAodEJh.js">
+    <link rel="modulepreload" crossorigin href="./assets/get-B_kAyaPl.js">
+    <link rel="modulepreload" crossorigin href="./assets/_baseSet-Sc7P9iOK.js">
+    <link rel="modulepreload" crossorigin href="./assets/state-oB9pwiwS.js">
+    <link rel="modulepreload" crossorigin href="./assets/label-Cvbi55_x.js">
+    <link rel="modulepreload" crossorigin href="./assets/textarea-ChkICSMn.js">
+    <link rel="modulepreload" crossorigin href="./assets/refresh-ccw-DwP7TAI9.js">
+    <link rel="modulepreload" crossorigin href="./assets/trash-2-CPFJhzBF.js">
+    <link rel="modulepreload" crossorigin href="./assets/form-rW9z_hZz.js">
+    <link rel="modulepreload" crossorigin href="./assets/renderShortcut-CwG4LAo7.js">
+    <link rel="modulepreload" crossorigin href="./assets/field-SBC8FrmM.js">
+    <link rel="modulepreload" crossorigin href="./assets/VisuallyHidden-CU7G7cz_.js">
+    <link rel="modulepreload" crossorigin href="./assets/useBoolean-BjAVIr1t.js">
+    <link rel="modulepreload" crossorigin href="./assets/useDeepCompareMemoize-606Ao2HX.js">
+    <link rel="modulepreload" crossorigin href="./assets/types-DNsZzheK.js">
+    <link rel="modulepreload" crossorigin href="./assets/fileToBase64-D56_SaTi.js">
+    <link rel="modulepreload" crossorigin href="./assets/prop-types-BrVK5P5H.js">
+    <link rel="modulepreload" crossorigin href="./assets/es-wtizskHz.js">
+    <link rel="modulepreload" crossorigin href="./assets/code-xml-Xy4mg5w4.js">
+    <link rel="modulepreload" crossorigin href="./assets/download-CXthr_IK.js">
+    <link rel="modulepreload" crossorigin href="./assets/square-uKnAnUv7.js">
+    <link rel="modulepreload" crossorigin href="./assets/triangle-alert-CkHEQfl8.js">
+    <link rel="modulepreload" crossorigin href="./assets/bundle.esm-LMxLLjaH.js">
+    <link rel="stylesheet" crossorigin href="./assets/cells-jmgGt1lS.css">
+    <link rel="stylesheet" crossorigin href="./assets/markdown-renderer-DdDKmWlR.css">
+    <link rel="stylesheet" crossorigin href="./assets/JsonOutput-B7vuddcd.css">
+    <link rel="stylesheet" crossorigin href="./assets/index-BuSRVSH0.css">
+  <marimo-wasm hidden=""></marimo-wasm>
+    <script>
+        if (window.location.protocol === 'file:') {
+            alert('Warning: This file must be served by an HTTP server to function correctly.');
+        }
+    </script>
+    
+    <style>
+        #save-button {
+            display: none !important;
+        }
+        #filename-input {
+            display: none !important;
+        }
+    </style>
+    <marimo-code hidden="">import%20marimo%0A%0A__generated_with%20%3D%20%220.22.0%22%0Aapp%20%3D%20marimo.App(width%3D%22medium%22)%0A%0A%0A%40app.cell(hide_code%3DTrue)%0Adef%20_()%3A%0A%20%20%20%20import%20marimo%20as%20mo%0A%20%20%20%20import%20pandas%20as%20pd%0A%20%20%20%20import%20numpy%20as%20np%0A%20%20%20%20import%20statsmodels.formula.api%20as%20smf%0A%20%20%20%20import%20matplotlib.pyplot%20as%20plt%0A%0A%20%20%20%20return%20mo%2C%20np%2C%20pd%2C%20plt%2C%20smf%0A%0A%0A%40app.cell(hide_code%3DTrue)%0Adef%20_(np)%3A%0A%20%20%20%20np.random.seed(67)%20%23%20setting%20seed%20for%20reproducibility%0A%20%20%20%20return%0A%0A%0A%40app.cell(hide_code%3DTrue)%0Adef%20_(np%2C%20pd%2C%20plt)%3A%0A%20%20%20%20def%20simulate_data(n%20%3D%2050000%2C%20%23%20number%20of%20customers%20in%20the%20A%2FA%20test%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20avg_spend%20%3D%2020%2C%20%23%20average%20spend%20for%20a%20normal%20customer%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20big_back_spend%20%3D%2010%2C%20%23%20average%20additional%20spend%20for%20a%20big%20back%20customer%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20broken%20%3D%20False)%3A%20%23%20whether%20the%20A%2FA%20test%20should%20show%20a%20%22broken%20results%22%0A%20%20%20%20%20%20%20%20%23%20simulate%20customer%20type%0A%20%20%20%20%20%20%20%20is_big_back%20%3D%20np.random.choice(a%20%3D%20%5B0%2C%201%5D%2C%20size%20%3D%20n%2C%20p%20%3D%20%5B0.7%2C%200.3%5D)%20%23%2030%25%20of%20customers%20are%20big%20backs%0A%20%20%20%20%20%20%20%20%23%20simulate%20spend%20for%20each%20customer%0A%20%20%20%20%20%20%20%20spend%20%3D%20avg_spend%20%2B%20(big_back_spend%20*%20is_big_back)%20%2B%20np.random.normal(loc%20%3D%200%2C%20scale%20%3D%202)%0A%20%20%20%20%20%20%20%20%23%20assign%20probabilities%20to%20being%20in%20class%201%0A%20%20%20%20%20%20%20%20base_probs%20%3D%20np.repeat(a%20%3D%200.5%2C%20repeats%20%3D%20n)%0A%20%20%20%20%20%20%20%20if%20broken%3A%0A%20%20%20%20%20%20%20%20%20%20%20%20probs%20%3D%20np.where(is_big_back%2C%200.7%2C%200.5)%20%23%20big%20backs%20are%20more%20likely%20to%20be%20in%20button%201%0A%20%20%20%20%20%20%20%20else%3A%0A%20%20%20%20%20%20%20%20%20%20%20%20probs%20%3D%20base_probs%0A%20%20%20%20%20%20%20%20%23%20assign%20to%201st%20red%20button%20or%202nd%20red%20button%0A%20%20%20%20%20%20%20%20has_button_1%20%3D%20np.random.binomial(np.repeat(1%2C%20n)%2C%20p%20%3D%20probs)%0A%0A%20%20%20%20%20%20%20%20df%20%3D%20pd.DataFrame(%0A%20%20%20%20%20%20%20%20%20%20%20%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20'is_big_back'%20%3A%20is_big_back%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20'spend'%20%3A%20spend%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20'has_button_1'%20%3A%20has_button_1%20%23%20button%201%20%3D%201%2C%20button%202%20%3D%200%0A%20%20%20%20%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%20%20)%0A%0A%20%20%20%20%20%20%20%20df%5B'customer_id'%5D%20%3D%20df.index%0A%20%20%20%20%20%20%20%20df_reordered%20%3D%20df%5B%5B'customer_id'%2C%20'is_big_back'%2C%20'spend'%2C%20'has_button_1'%5D%5D%0A%0A%20%20%20%20%20%20%20%20return%20df_reordered%0A%0A%20%20%20%20def%20balance_chart(df)%3A%0A%20%20%20%20%20%20%20%20counts%20%3D%20df.groupby(%5B'has_button_1'%2C%20'is_big_back'%5D).size().unstack(fill_value%3D0)%0A%20%20%20%20%20%20%20%20proportions%20%3D%20counts.div(counts.sum(axis%3D1)%2C%20axis%3D0).loc%5B%5B1%2C%200%5D%5D%0A%0A%20%20%20%20%20%20%20%20fig%2C%20ax%20%3D%20plt.subplots()%0A%20%20%20%20%20%20%20%20x%20%3D%20np.arange(len(proportions))%0A%20%20%20%20%20%20%20%20width%20%3D%200.35%0A%0A%20%20%20%20%20%20%20%20ax.bar(x%20-%20width%2F2%2C%20proportions%5B0%5D%2C%20width%2C%20label%3D'Normal%20Customer')%0A%20%20%20%20%20%20%20%20ax.bar(x%20%2B%20width%2F2%2C%20proportions%5B1%5D%2C%20width%2C%20label%3D'Big%20Back%20Customer')%0A%0A%20%20%20%20%20%20%20%20ax.set_xticks(x)%0A%20%20%20%20%20%20%20%20ax.set_xticklabels(%5B'Button%201'%2C%20'Button%202'%5D)%0A%20%20%20%20%20%20%20%20ax.set_xlabel('Group')%0A%20%20%20%20%20%20%20%20ax.set_ylabel('Proportion%20of%20Customers')%0A%20%20%20%20%20%20%20%20ax.set_title('Balance%20Check%3A%20Customer%20Type%20by%20Button%20Group')%0A%20%20%20%20%20%20%20%20ax.legend()%0A%0A%20%20%20%20%20%20%20%20return%20fig%0A%0A%20%20%20%20def%20plot_ci(results)%3A%0A%20%20%20%20%20%20%20%20ci%20%3D%20results.conf_int().drop('Intercept')%0A%20%20%20%20%20%20%20%20estimates%20%3D%20results.params.drop('Intercept')%0A%0A%20%20%20%20%20%20%20%20fig%2C%20ax%20%3D%20plt.subplots()%0A%20%20%20%20%20%20%20%20y%20%3D%20np.arange(len(estimates))%0A%0A%20%20%20%20%20%20%20%20ax.errorbar(estimates%2C%20y%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20xerr%3D%5Bestimates%20-%20ci%5B0%5D%2C%20ci%5B1%5D%20-%20estimates%5D%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20fmt%3D'o'%2C%20capsize%3D5)%0A%20%20%20%20%20%20%20%20ax.axvline(x%3D0%2C%20linestyle%3D'--'%2C%20color%3D'red'%2C%20linewidth%3D1)%0A%20%20%20%20%20%20%20%20ax.set_yticks(y)%0A%20%20%20%20%20%20%20%20ax.set_yticklabels(estimates.index)%0A%20%20%20%20%20%20%20%20ax.set_xlabel('Coefficient%20Estimate')%0A%20%20%20%20%20%20%20%20ax.set_title('95%25%20Confidence%20Intervals')%0A%0A%20%20%20%20%20%20%20%20return%20fig%0A%0A%20%20%20%20return%20balance_chart%2C%20plot_ci%2C%20simulate_data%0A%0A%0A%40app.cell(hide_code%3DTrue)%0Adef%20_(mo)%3A%0A%20%20%20%20mo.md(r%22%22%22%0A%20%20%20%20%23%23%20The%20Data%20and%20the%20context%20of%20the%20A%2FA%20test%0A%0A%20%20%20%20We%20are%20simulating%20the%20results%20of%20an%20A%2FA%20test.%0A%0A%20%20%20%20The%20owner%20of%20the%20restaurant%20%22Let's%20Taco%20'bout%20it%22%20are%20considering%20changing%20%22Order%20Online%22%20button%20from%20red%20to%20yellow%20will%20increase%20average%20monthly%20customer%20spend.%20Before%20we%20run%20an%20A%2FB%20test%2C%20we%20want%20to%20check%20whether%20our%20results%20will%20be%20trustworthy%20using%20an%20A%2FA%20test.%0A%0A%20%20%20%20Our%20simulated%20dataset%20will%20have%20the%20following%20columns%3A%0A%0A%20%20%20%20%7CColumn%7CDefinition%7C%0A%20%20%20%20%7C------%7C----------%7C%0A%20%20%20%20%7Ccustomer_id%7C%20id%20for%20the%20customer%20that%20is%20spending%7C%0A%20%20%20%20%7Cis_big_back%7C%200%20%3D%20normal%20customer%2C%201%20%3D%20big%20back%20customer%20(spends%20more%20on%20average)%7C%0A%20%20%20%20%7Cspend%7C%20monthly%20spend%20of%20the%20given%20customer%7C%0A%20%20%20%20%7Chas_button_1%7C%20group%20that%20the%20customer%20is%20assigned%20to.%200%20%3D%20red%20button%20%232%2C%201%20%3D%20red%20button%20%231%7C%0A%0A%20%20%20%20Think%20of%20%60has_button_1%60%20as%20a%20variable%20that%20specifies%20whether%20the%20user%20is%20in%20the%20treated%20or%20control%20group.%20In%20an%20A%2FA%20test%2C%20these%20groups%20are%20shown%20the%20same%20button.%0A%0A%20%20%20%20Preview%20of%20the%20data%3A%0A%20%20%20%20%22%22%22)%0A%20%20%20%20return%0A%0A%0A%40app.cell(hide_code%3DTrue)%0Adef%20_(simulate_data)%3A%0A%20%20%20%20broken_data%20%3D%20simulate_data(broken%20%3D%20True)%20%23%20broken%20A%2FA%20test%0A%20%20%20%20normal_data%20%3D%20simulate_data(broken%20%3D%20False)%20%23%20A%2FA%20test%0A%20%20%20%20broken_data.head()%0A%20%20%20%20return%20broken_data%2C%20normal_data%0A%0A%0A%40app.cell(hide_code%3DTrue)%0Adef%20_(mo)%3A%0A%20%20%20%20mo.md(r%22%22%22%0A%20%20%20%20%23%23%20Simulation%20of%20a%20broken%20A%2FA%20test%0A%0A%20%20%20%20Below%2C%20we%20simulate%20what%20our%20results%20might%20be%20if%20something%20in%20our%20A%2FB%20testing%20is%20breaking%20the%20random%20assignment%20of%20customers%20to%20each%20button%20group.%0A%0A%20%20%20%20In%20this%20case%2C%20the%20pipeline%20is%20broken%20because%20it%20is%20assigning%20%22big%20back%22%20customers%20to%20the%20button%201%20more%20often%20than%20button%202.%0A%20%20%20%20%22%22%22)%0A%20%20%20%20return%0A%0A%0A%40app.cell%0Adef%20_(balance_chart%2C%20broken_data)%3A%0A%20%20%20%20balance_chart(broken_data)%0A%20%20%20%20return%0A%0A%0A%40app.cell(hide_code%3DTrue)%0Adef%20_(mo)%3A%0A%20%20%20%20mo.md(r%22%22%22%0A%20%20%20%20As%20a%20result%2C%20we%20notice%20that%20the%20average%20monthly%20customer%20spend%20for%20button%201%20is%20significantly%20higher%20than%20button%202%20when%20we%20run%20a%20t-test.%20This%20doesn't%20make%20sense%20though%2C%20because%20button%201%20and%202%20are%20both%20the%20same%20red%20button!%0A%20%20%20%20%22%22%22)%0A%20%20%20%20return%0A%0A%0A%40app.cell%0Adef%20_(broken_data%2C%20mo%2C%20smf)%3A%0A%20%20%20%20%23%20run%20broken%20a%2Fa%20test%0A%0A%20%20%20%20%23%20Note%3A%20this%20simple%20linear%20regression%20is%20equivalent%20to%20running%20a%20t-test%0A%20%20%20%20model%20%3D%20smf.ols('spend~has_button_1'%2C%20data%20%3D%20broken_data).fit()%0A%20%20%20%20res%20%3D%20model.summary()%0A%20%20%20%20mo.Html(res.as_html())%0A%20%20%20%20return%20(model%2C)%0A%0A%0A%40app.cell(hide_code%3DTrue)%0Adef%20_(model%2C%20plot_ci)%3A%0A%20%20%20%20plot_ci(model)%0A%20%20%20%20return%0A%0A%0A%40app.cell(hide_code%3DTrue)%0Adef%20_(mo)%3A%0A%20%20%20%20mo.md(r%22%22%22%0A%20%20%20%20%23%23%20Simulation%20of%20an%20expected%20A%2FA%20test%20result%0A%0A%20%20%20%20If%20the%20customers%20were%20truly%20randomly%20assigned%20to%20button%201%20or%202%2C%20we%20would%20have%20a%20correct%20A%2FB%20testing%20pipeline.%0A%0A%20%20%20%20The%20button%201%20group%20is%20now%20comparable%20to%20the%20button%202%20group%2C%20containing%20the%20same%20proportion%20of%20big%20backs.%0A%20%20%20%20%22%22%22)%0A%20%20%20%20return%0A%0A%0A%40app.cell(hide_code%3DTrue)%0Adef%20_(balance_chart%2C%20normal_data)%3A%0A%20%20%20%20balance_chart(normal_data)%0A%20%20%20%20return%0A%0A%0A%40app.cell(hide_code%3DTrue)%0Adef%20_(mo)%3A%0A%20%20%20%20mo.md(r%22%22%22%0A%20%20%20%20Since%20the%20the%20button%201%20and%20button%202%20groups%20are%20comparable%20and%20they%20are%20shown%20the%20same%20red%20button%2C%20we%20expect%20do%20not%20expect%20a%20significant%20effect%20when%20we%20do%20a%20t-test.%0A%0A%20%20%20%20This%20is%20evidence%20that%20our%20A%2FB%20testing%20system%20is%20working%20properly%20and%20we%20are%20ready%20to%20run%20an%20actual%20A%2FB%20test%20now!%0A%20%20%20%20%22%22%22)%0A%20%20%20%20return%0A%0A%0A%40app.cell%0Adef%20_(mo%2C%20normal_data%2C%20smf)%3A%0A%20%20%20%20%23%20run%20a%2Fa%20test%20with%20correct%20results%0A%20%20%20%20normal_model%20%3D%20smf.ols('spend~has_button_1'%2C%20data%20%3D%20normal_data).fit()%0A%20%20%20%20normal_res%20%3D%20normal_model.summary()%0A%20%20%20%20mo.Html(normal_res.as_html())%0A%20%20%20%20return%20(normal_model%2C)%0A%0A%0A%40app.cell%0Adef%20_(normal_model%2C%20plot_ci)%3A%0A%20%20%20%20plot_ci(normal_model)%0A%20%20%20%20return%0A%0A%0A%40app.cell(hide_code%3DTrue)%0Adef%20_(mo)%3A%0A%20%20%20%20mo.md(r%22%22%22%0A%20%20%20%20%23%23%20Advanced%3A%20Re-randomization%20Test%0A%0A%20%20%20%20A%20single%20A%2FA%20test%20only%20gives%20us%20one%20p-value.%20We%20can't%20tell%20much%20from%20that%20alone.%20A%20better%20approach%2C%20recommended%20in%20*Trustworthy%20Online%20Controlled%20Experiments*%2C%20is%20to%20run%20separate%20A%2FA%20tests%20on%20the%20same%20dataset%20many%20times.%0A%0A%20%20%20%20We%20keep%20the%20customers%20and%20their%20spend%20values%20fixed%2C%20but%20re-assign%20each%20customer%20to%20button%201%20or%20button%202%201000%20times%20using%20the%20assignment%20mechanism%20under%20test.%20If%20the%20assignment%20is%20working%20correctly%2C%20the%20p-values%20should%20be%20roughly%20**uniform**%20across%20%5B0%2C%201%5D%20%E2%80%94%20about%205%25%20should%20fall%20below%200.05%20just%20by%20chance.%20If%20the%20assignment%20is%20broken%2C%20p-values%20will%20be%20**skewed%20toward%200**%2C%20revealing%20that%20the%20mechanism%20itself%20is%20producing%20spurious%20effects.%0A%0A%20%20%20%20The%20code%20takes%20some%20time%20to%20run%20so%20please%20be%20patient!%0A%20%20%20%20%22%22%22)%0A%20%20%20%20return%0A%0A%0A%40app.cell(hide_code%3DTrue)%0Adef%20_(np%2C%20plt%2C%20smf)%3A%0A%20%20%20%20def%20simulate_pvalues(df%2C%20n_simulations%3D1000%2C%20broken%3DFalse)%3A%0A%20%20%20%20%20%20%20%20pvalues%20%3D%20%5B%5D%0A%20%20%20%20%20%20%20%20for%20_%20in%20range(n_simulations)%3A%0A%20%20%20%20%20%20%20%20%20%20%20%20df_copy%20%3D%20df.copy()%0A%20%20%20%20%20%20%20%20%20%20%20%20n%20%3D%20len(df_copy)%0A%20%20%20%20%20%20%20%20%20%20%20%20if%20broken%3A%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20probs%20%3D%20np.where(df_copy%5B'is_big_back'%5D%2C%200.7%2C%200.5)%0A%20%20%20%20%20%20%20%20%20%20%20%20else%3A%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20probs%20%3D%20np.repeat(0.5%2C%20n)%0A%20%20%20%20%20%20%20%20%20%20%20%20df_copy%5B'has_button_1'%5D%20%3D%20np.random.binomial(1%2C%20p%3Dprobs)%0A%20%20%20%20%20%20%20%20%20%20%20%20model%20%3D%20smf.ols('spend~has_button_1'%2C%20data%3Ddf_copy).fit()%0A%20%20%20%20%20%20%20%20%20%20%20%20pvalues.append(model.pvalues%5B'has_button_1'%5D)%0A%20%20%20%20%20%20%20%20return%20pvalues%0A%0A%20%20%20%20def%20plot_pvalue_distribution(pvalues%2C%20title)%3A%0A%20%20%20%20%20%20%20%20fig%2C%20ax%20%3D%20plt.subplots()%0A%20%20%20%20%20%20%20%20ax.hist(pvalues%2C%20bins%3D50%2C%20edgecolor%3D'black')%0A%20%20%20%20%20%20%20%20ax.axvline(x%3D0.05%2C%20linestyle%3D'--'%2C%20color%3D'red'%2C%20label%3D'%CE%B1%20%3D%200.05')%0A%20%20%20%20%20%20%20%20ax.set_xlabel('P-value')%0A%20%20%20%20%20%20%20%20ax.set_ylabel('Frequency')%0A%20%20%20%20%20%20%20%20ax.set_title(title)%0A%20%20%20%20%20%20%20%20ax.legend()%0A%20%20%20%20%20%20%20%20return%20fig%0A%0A%20%20%20%20return%20plot_pvalue_distribution%2C%20simulate_pvalues%0A%0A%0A%40app.cell(hide_code%3DTrue)%0Adef%20_(mo)%3A%0A%20%20%20%20mo.md(r%22%22%22%0A%20%20%20%20%23%23%23%20Distribution%20of%20p-values%20for%20broken%20A%2FB%20testing%20pipline%0A%20%20%20%20%22%22%22)%0A%20%20%20%20return%0A%0A%0A%40app.cell%0Adef%20_(broken_data%2C%20simulate_pvalues)%3A%0A%20%20%20%20broken_pvalues%20%3D%20simulate_pvalues(broken_data%2C%20n_simulations%3D1000%2C%20broken%3DTrue)%0A%20%20%20%20return%20(broken_pvalues%2C)%0A%0A%0A%40app.cell%0Adef%20_(broken_pvalues%2C%20plot_pvalue_distribution)%3A%0A%20%20%20%20plot_pvalue_distribution(broken_pvalues%2C%20title%3D'P-value%20Distribution%3A%20Broken%20Assignment%20(1000%20re-randomizations)')%0A%20%20%20%20return%0A%0A%0A%40app.cell(hide_code%3DTrue)%0Adef%20_(mo)%3A%0A%20%20%20%20mo.md(r%22%22%22%0A%20%20%20%20%23%23%23%20Distribution%20of%20p-values%20for%20working%20A%2FB%20testing%20pipline%0A%20%20%20%20%22%22%22)%0A%20%20%20%20return%0A%0A%0A%40app.cell%0Adef%20_(normal_data%2C%20simulate_pvalues)%3A%0A%20%20%20%20normal_pvalues%20%3D%20simulate_pvalues(normal_data%2C%20n_simulations%3D1000%2C%20broken%3DFalse)%0A%20%20%20%20return%20(normal_pvalues%2C)%0A%0A%0A%40app.cell%0Adef%20_(normal_pvalues%2C%20plot_pvalue_distribution)%3A%0A%20%20%20%20plot_pvalue_distribution(normal_pvalues%2C%20title%3D'P-value%20Distribution%3A%20Working%20Assignment%20(1000%20re-randomizations)')%0A%20%20%20%20return%0A%0A%0Aif%20__name__%20%3D%3D%20%22__main__%22%3A%0A%20%20%20%20app.run()%0A</marimo-code></head>
+  <body>
+    <div id="root"></div>
+    <!-- This is a portal for the data editor to render in -->
+    <div id="portal" data-testid="glide-portal" style="position: fixed; left: 0; top: 0; z-index: 9999"></div>
+    <script data-marimo="true">
+      window.__MARIMO_MOUNT_CONFIG__ = {
+            "filename": "notebook.py",
+            "cwd": "",
+            "mode": "read",
+            "version": "0.22.0",
+            "serverToken": "unused",
+            "config": {"ai": {"custom_providers": {}, "models": {"custom_models": [], "displayed_models": []}}, "completion": {"activate_on_typing": true, "copilot": false, "signature_hint_on_typing": false}, "diagnostics": {"sql_linter": true}, "display": {"cell_output": "below", "code_editor_font_size": 14, "dataframes": "rich", "default_table_max_columns": 50, "default_table_page_size": 10, "default_width": "medium", "reference_highlighting": true, "theme": "light"}, "formatting": {"line_length": 79}, "keymap": {"overrides": {}, "preset": "default"}, "language_servers": {"pylsp": {"enable_flake8": false, "enable_mypy": true, "enable_pydocstyle": false, "enable_pyflakes": false, "enable_pylint": false, "enable_ruff": true, "enabled": false}}, "mcp": {"mcpServers": {}, "presets": []}, "package_management": {"manager": "uv"}, "runtime": {"auto_instantiate": false, "auto_reload": "off", "default_csv_encoding": "utf-8", "default_sql_output": "auto", "on_cell_change": "autorun", "output_max_bytes": 8000000, "reactive_tests": true, "std_stream_max_bytes": 1000000, "watcher_on_save": "lazy"}, "save": {"autosave": "off", "autosave_delay": 1000, "format_on_save": false}, "server": {"browser": "default", "follow_symlink": false}, "snippets": {"custom_paths": [], "include_default_snippets": true}},
+            "configOverrides": {},
+            "appConfig": {"sql_output": "auto", "width": "medium"},
+            "view": {"showAppCode": false},
+            "notebook": null,
+            "session": null,
+            "runtimeConfig": null,
+        };
+    </script>
+  </body>
+</html>
